@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Saanvi Sonker — Portfolio</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f1724; --card:#0b1220; --muted:#9aa4b2; --accent:#6C63FF; --glass: rgba(255,255,255,0.06);
+      --light-bg:#f5f8ff; --light-card:#ffffff; --light-text:#0f1724;
+    }
+    /* Reset */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{font-family:'Poppins',sans-serif;background:linear-gradient(180deg,#0b1220 0%, #081021 60%);color:#e6eef8;line-height:1.5}
+
+    /* Layout */
+    .container{max-width:1100px;margin:0 auto;padding:30px}
+
+    /* NAV */
+    .nav{display:flex;justify-content:space-between;align-items:center;padding:18px 0}
+    .brand{display:flex;gap:12px;align-items:center}
+    .brand .logo{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#4ea8ff);display:flex;align-items:center;justify-content:center;font-weight:800}
+    nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600}
+    nav a:hover{color:#fff}
+
+    /* HERO */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:40px;align-items:center;padding:40px 0}
+    .hero .intro h1{font-size:36px;margin-bottom:10px}
+    .hero .intro p{color:var(--muted);margin-bottom:20px}
+    .cta{display:flex;gap:12px}
+    .btn{padding:12px 18px;border-radius:10px;border:none;cursor:pointer;font-weight:700}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),#4ea8ff);color:#fff}
+    .btn.ghost{background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,0.06)}
+
+    /* Hero card */
+    .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));padding:22px;border-radius:18px;box-shadow:0 10px 30px rgba(2,6,23,0.6)}
+    .profile-pic{width:100%;height:260px;border-radius:12px;background-image:url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=');background-size:cover;background-position:center}
+
+    /* Skills */
+    .skills{display:flex;gap:18px;flex-wrap:wrap;margin-top:22px}
+    .skill{background:var(--glass);padding:12px 14px;border-radius:10px;font-weight:700;color:var(--muted)}
+
+    /* Projects */
+    .projects{margin-top:40px}
+    .projects-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+    .filters{display:flex;gap:10px}
+    .filter-btn{padding:8px 12px;border-radius:999px;border:none;background:transparent;color:var(--muted);cursor:pointer}
+    .filter-btn.active{background:rgba(255,255,255,0.06);color:#fff}
+
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));padding:14px;border-radius:14px;cursor:pointer;overflow:hidden;position:relative;transition:transform .28s, box-shadow .28s}
+    .card:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(2,6,23,0.7)}
+    .card .thumb{height:160px;border-radius:10px;background-size:cover;background-position:center;margin-bottom:12px}
+    .card h3{font-size:18px;margin-bottom:8px}
+    .card p{color:var(--muted);font-size:14px}
+
+    /* Modal */
+    .modal{position:fixed;inset:0;background:rgba(2,6,23,0.7);display:none;align-items:center;justify-content:center;padding:20px}
+    .modal .modal-card{background:#061226;padding:24px;border-radius:14px;max-width:820px;width:100%;color:#eaf3ff}
+    .modal .modal-card .meta{display:flex;gap:12px;align-items:center;margin-bottom:12px}
+
+    /* Skill bars */
+    .skill-bar{background:rgba(255,255,255,0.04);border-radius:999px;padding:6px}
+    .skill-bar > span{display:block;height:10px;border-radius:999px;background:linear-gradient(90deg,var(--accent),#4ea8ff);width:0}
+
+    /* Contact */
+    .contact-card{background:linear-gradient(120deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px;margin-top:24px}
+
+    /* Footer */
+    footer{margin-top:40px;padding:30px 0;text-align:center;color:var(--muted)}
+    /* button git */
+.git-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 12px;
+ background:linear-gradient(90deg,var(--accent),#4ea8ff);color:#fff;
+  
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 14px;
+  transition:  0.3s;
+}
+
+.git-btn:hover {
+  background-color: #444c56;
+}
+
+.skill-card {
+  padding:12px;
+  background:var(--card-bg);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:10px;
+  font-weight:600;
+  text-align:center;
+  transition:0.3s;
+  cursor:pointer;
+}
+.skill-card:hover {
+  transform:translateY(-4px);
+background:linear-gradient(90deg,var(--accent),#4ea8ff);color:#fff;
+  
+}
+
+
+    /* Responsive */
+    @media (max-width:980px){.hero{grid-template-columns:1fr} .grid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:640px){.grid{grid-template-columns:1fr} nav a{display:none} .brand{gap:8px}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="nav">
+      <div class="brand">
+        <div class="logo">SS</div>
+        <div>
+          <div style="font-weight:800">Saanvi Sonker</div>
+        
+        </div>
+      </div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+        <a href="https://drive.google.com/file/d/18tFJEGZ1bZG3Oru-X4VkFbxuEzOwOkdZ/view?pli=1" download>Resume</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="intro">
+        <h1>Hello, I'm <span style="color:var(--accent)">Saanvi Sonker</span></h1>
+        <p>I’m a tech-enthusiastic CSE student interested in analysing data and solving problems.
+             I enjoy building practical projects that connect to real-world needs, and I love exploring web development, AI, and data-driven solutions. 
+            I’m committed to learning new skills and improving every day.
+        </p>
+        <div class="cta">
+         
+ <a class="btn primary" href="mailto:saanvisonker@gmail.com">Contact Me</a>
+        </div>
+
+        <!-- Typing tagline -->
+        <div style="margin-top:18px;color:var(--muted);font-weight:600">I am a <span id="typing"></span></div>
+      </div>
+
+      <aside class="hero-card">
+        <div class="profile-pic"><img src="/images/photo.jpeg"
+            height="300px" alt="photo"></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px">
+          <div>
+            <div style="color:var(--muted);font-size:13px">B.Tech Computer Science — AKGEC (2022-2026)</div>
+          </div>
+          
+        </div>
+      </aside>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="projects">
+      <div class="projects-header">
+        <h2 style="color:#eaf3ff">Projects</h2>
+        <div class="filters">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="web">Web</button>
+          <button class="filter-btn" data-filter="ml">ML</button>
+          <button class="filter-btn" data-filter="dash">Dashboards</button>
+        </div>
+      </div>
+
+      <div class="grid" id="projects-grid">
+        <!-- Card 1 -->
+       <!-- Card 1 -->
+<div class="card" data-type="web" onclick="openModal({
+      title:'E-Doctor Web Application',
+      desc:'Full-stack healthcare app built with Spring Boot, React.js and SQL. Integrated secure payment gateway and REST APIs.',
+      
+    })">
+  <div class="thumb" style="background-image: url(/images/e-doc.png);"></div>
+  <h3>E-Doctor</h3>
+  <p>Scalable appointment & payment system for outpatient clinics.</p>
+  <a href="https://github.com/saanvisonker/NewEdoctor.git" target="_blank" class="git-btn">View on GitHub</a>
+</div>
+
+<!--  card 2-->
+  <div class="card" data-type="web" onclick="openModal({
+      title:'IntervU — AI Mock Interview',
+      desc:'AI-powered mock interview platform using NLP and Gemini API with a React dashboard.',
+    })">
+  <div class="thumb" style="background-image:url(/images/intervU.png)"></div>
+  <h3>IntervU</h3>
+  <p>Mock-interview platform with real-time feedback and performance tracking.</p>
+  <a href="https://github.com/PriyanshiChauhan209/IntervU.git" target="_blank" class="git-btn">View on GitHub</a>
+</div>
+<!-- Card 3 -->
+<div class="card" data-type="ml" onclick="openModal({
+      title:'Smart Voting System',
+      desc:'Face-recognition voting system using OpenCV and KNN to ensure one-person-one-vote.',
+    })">
+  <div class="thumb" style="background-image:url(/images/voting.png)"></div>
+  <h3>Smart Voting</h3>
+  <p>Secure, ML-driven voting workflow with facial enrollment and logging.</p>
+  <a href="https://github.com/saanvisonker/Smart_voting.git" target="_blank" class="git-btn">View on GitHub</a>
+</div>
+
+
+<!-- Card 4 -->
+<div class="card" data-type="dash" onclick="openModal({
+      title:'Hospital Dashboard',
+      desc:'Interactive Power BI dashboard visualizing hospital performance metrics and patient flow.',
+     
+    })">
+  <div class="thumb" style="background-image:url(/images/dashboard.png)"></div>
+  <h3>Hospital Dashboard</h3>
+  <p>Power BI visualizations for healthcare KPIs and time-series analysis.</p>
+  <a href="https://github.com/saanvisonker/Hospital_dashboard.git" target="_blank" class="git-btn">View on GitHub</a>
+</div>
+<!-- card 5 -->
+<div class="card" data-type="web"onclick="openModal({
+      title:'Catch the Egg Game',
+      desc:'A fun interactive web game where players catch falling eggs using a movable basket. Built with HTML, CSS, and JavaScript.',
+    })">
+  <div class="thumb" style="background-image:url(/images/egg.png)"></div>
+  <h3>Catch the Egg Game</h3>
+  <p>Interactive JavaScript game where players catch falling eggs to score points.</p>
+  <a href="https://github.com/saanvisonker/Catch-The-egg.git" target="_blank" class="git-btn">View on GitHub</a>
+</div>
+
+  </div> 
+
+<!-- Skills Section -->
+<!-- ✅ NEW CLEAN SKILLS SECTION BELOW PROJECTS -->
+<section id="skills" style="margin-top:70px">
+  <h2>Skills & Tools</h2>
+  <p style="color:var(--muted)">Technologies I work with</p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin-top:20px;">
+     <div class="skill-card">Java</div>
+      <div class="skill-card">Python</div>
+     <div class="skill-card">Power BI</div>
+      <div class="skill-card">SQL</div>
+    <div class="skill-card">React.js</div>
+    <div class="skill-card">Spring Boot</div>
+   <div class="skill-card">Machine Learning</div>
+    <div class="skill-card">Excel</div>
+<div class="skill-card">HTML / CSS</div>
+
+  </div>
+</section>
+
+<!-- ✅ NEW CONTACT SECTION WITH FORM (clean and vertical) -->
+<section id="contact" style="margin-top:70px; text-align:center;">
+  <h2>Contact Me</h2>
+  <p style="color:var(--muted)">Feel free to reach out!</p>
+
+  <!-- Wrapper to center the form -->
+  <div class="contact-card" 
+       style="max-width:460px; margin:0 auto;">
+
+    <form action="#" method="POST" 
+          style="display:flex; flex-direction:column; gap:14px; text-align:left;">
+
+      <input type="text" placeholder="Your Name" required
+        style="padding:12px; border-radius:8px; border:none; 
+               background:rgba(255,255,255,0.08); color:white">
+
+      <input type="email" placeholder="Your Email" required
+        style="padding:12px; border-radius:8px; border:none; 
+               background:rgba(255,255,255,0.08); color:white">
+
+      <textarea placeholder="Your Message" required rows="4"
+        style="padding:12px; border-radius:8px; border:none; 
+               background:rgba(255,255,255,0.08); color:white"></textarea>
+
+      <button class="btn primary" type="submit" style="cursor:pointer;">
+        Send Message
+      </button>
+
+    </form>
+  </div>
+</section>
+
+
+
+    <footer>
+      © 2025 Saanvi Sonker — Built with ❤️ • <span style="color:var(--muted)"></span>
+    </footer>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-card">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <h3 id="m-title">Project</h3>
+        <button class="btn" onclick="closeModal()" style="background:transparent;color:var(--muted)"><i class="fa fa-times"></i></button>
+      </div>
+      <div class="meta" style="margin-top:12px">
+        <img id="m-img" src="" alt="thumb" style="width:120px;height:80px;object-fit:cover;border-radius:8px;margin-right:12px" />
+        <div>
+          <div id="m-desc" style="color:var(--muted)"></div>
+          <div style="margin-top:10px"><a id="m-link" href="#" target="_blank" class="btn primary">View on GitHub</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Typing effect
+  const phrases = ['Full-Stack Developer', 'Data Analyst', 'Machine Learning Enthusiast', 'Problem Solver'];
+let idx = 0, pos = 0, forward = true;
+const el = document.getElementById('typing');
+
+function tick() {
+  const word = phrases[idx];
+
+  if (forward) {
+    pos++;
+    el.innerText = word.substring(0, pos);  // render first
+
+    if (pos === word.length) {
+      forward = false;
+      setTimeout(tick, 900); 
+      return;
+    }
+  } else {
+    pos--;
+    el.innerText = word.substring(0, pos);  // render first
+
+    if (pos === 0) {
+      forward = true;
+      idx = (idx + 1) % phrases.length;
+    }
+  }
+
+  setTimeout(tick, forward ? 80 : 40);
+}
+
+tick();
+;
+
+    // Skill bars animation
+    document.addEventListener('DOMContentLoaded', ()=>{
+      document.querySelectorAll('.skill-bar > span').forEach(el =>{
+        const w = el.dataset.width || '60%';
+        setTimeout(()=> el.style.width = w, 400);
+      });
+    });
+
+    // Project modal
+    function openModal(data){
+      document.getElementById('m-title').innerText = data.title;
+      document.getElementById('m-desc').innerText = data.desc;
+      document.getElementById('m-img').src = data.img;
+      // m-link can point to github if provided
+      document.getElementById('m-link').href = data.link || '#';
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal(){ document.getElementById('modal').style.display = 'none'; }
+
+    // Filters
+    document.querySelectorAll('.filter-btn').forEach(btn =>{
+      btn.addEventListener('click', ()=>{
+        document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        const f = btn.dataset.filter;
+        document.querySelectorAll('.card').forEach(card=>{
+          if(f === 'all' || card.dataset.type === f) card.style.display = 'block';
+          else card.style.display = 'none';
+        });
+      });
+    });
+
+    // Smooth fade-in for cards
+    window.addEventListener('load', ()=>{
+      document.querySelectorAll('.card').forEach((c,i)=>{
+        c.style.opacity = 0; c.style.transform = 'translateY(18px)';
+        setTimeout(()=>{ c.style.transition = 'all 500ms ease'; c.style.opacity=1; c.style.transform='translateY(0)'; }, i*120);
+      });
+    });
+
+    // Close modal on outside click
+    document.getElementById('modal').addEventListener('click', (e)=>{ if(e.target.id==='modal') closeModal(); });
+  </script>
+</body>
+</html>
+
